@@ -39,7 +39,44 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
 let rec eval (e : expr) : expr =
   try
     match e with
-    | _ -> todo ()
+    (* Things you need to implement *)
+    | NumLit n -> NumLit n
+    | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+      (match (eval e1), op, (eval e2) with 
+        | NumLit e1', Add, NumLit e2' -> NumLit (e1' + e2') 
+        | NumLit e1', Sub, NumLit e2' -> NumLit (e1' - e2')  
+        | NumLit e1', Mul, NumLit e2' -> NumLit (e1' * e2')  
+        | NumLit e1', Gt, NumLit e2' -> if e1' > e2' then NumLit 1 else NumLit 0
+        | NumLit e1', Lt, NumLit e2' -> if e1' < e2' then NumLit 1 else NumLit 0
+        | NumLit e1', And, NumLit e2' -> if (e1' != 0) && (e2' != 0) then NumLit 1 else NumLit 0
+        | NumLit e1', Or, NumLit e2' -> if (e1' != 0) || (e2' != 0) then NumLit 1 else NumLit 0 
+        | NumLit e1', Eq, NumLit e2' -> if e1' = e2' then NumLit 1 else NumLit 0
+        | _-> im_stuck "one of the arguments are not of type NumLit"
+      )
+    | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
+      (match (eval e1) with
+        | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
+        | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
+        | _ -> im_stuck "e1 is not a NumLit"
+      ) 
+    | ListNil -> ListNil
+    | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+    | ListHead e -> let t1 = assert_value (eval e) in
+      (match (eval e) with
+       | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+       | _ -> im_stuck "argument is not a ListCons"
+      )
+    | ListTail e -> let t1 = assert_value (eval e) in
+      (match (eval e) with
+       | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+       | _ -> im_stuck "argument is not a ListCons"
+      )
+    | ListIsNil e -> let t1 = assert_value (eval e) in 
+      (match (eval e) with 
+       | ListNil -> NumLit 1
+       | ListCons (_, _) -> NumLit 0
+       | _ -> im_stuck "argument is not of List type"
+      ) 
   with
   | Stuck msg -> im_stuck (msg ^ "\nin expression " ^ string_of_expr e)
   ;;
