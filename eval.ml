@@ -77,6 +77,20 @@ let rec eval (e : expr) : expr =
        | ListCons (_, _) -> NumLit 0
        | _ -> im_stuck "argument is not of List type"
       ) 
+    | Var str -> Var str
+    | LetBind (str,e1,e2) -> let t1 = assert (eval e1) in let subAssert = assert ( eval (subst (x,(eval e1),e2)) ) in eval (subst (x,(eval e1),e2))
+    | Lambda (str, e) -> Lambda (str, e)
+    | App (e1, e2) -> let t1 = assert (eval e1) in 
+      (match (eval e1) with
+       | Lambda (x, e1') -> let t2 = assert (eval e2) in let subAssert = assert(eval (subst (x,(eval e2),e1'))) in eval (subst (x,(eval e2),e1'))
+       | _ -> im_stuck "first argument is not a lambda abstraction"
+      )
+    | Fix e -> let t1 = assert (eval e) in
+      (match (eval e) with
+       | Lambda (f, e') -> let v = eval (subst (f,(Fix (Lambda (f,e'))),e')) in let t2 = assert v in v
+       | _ -> im_stuck "e is not a lambda abstraction"
+      )
+    | _ -> im_stuck "Not an Expression"
   with
   | Stuck msg -> im_stuck (msg ^ "\nin expression " ^ string_of_expr e)
   ;;
