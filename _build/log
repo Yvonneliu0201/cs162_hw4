@@ -1,0 +1,312 @@
+# dune build repl.exe
+# OCAMLPARAM: unset
+# Workspace root: /cs/student/yvonneliu/cs162/hw4/cs162_hw4
+$ /usr/bin/nproc > /tmp/dune455e28.output 2> /dev/null
+# Auto-detected concurrency: 8
+# disable binary cache
+$ /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -config > /tmp/dune83e522.output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dyn
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some External "/cs/student/yvonneliu/.opam/cs160/lib/toplevel"
+#  ; ocaml_bin = External "/cs/student/yvonneliu/.opam/cs160/bin"
+#  ; ocaml = Ok External "/cs/student/yvonneliu/.opam/cs160/bin/ocaml"
+#  ; ocamlc = External "/cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt"
+#  ; ocamlopt =
+#      Ok External "/cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt"
+#  ; ocamldep =
+#      Ok External "/cs/student/yvonneliu/.opam/cs160/bin/ocamldep.opt"
+#  ; ocamlmklib =
+#      Ok External "/cs/student/yvonneliu/.opam/cs160/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" : "/cs/student/yvonneliu/.opam/cs160/lib"
+#        ; "DUNE_OCAML_STDLIB" : "/cs/student/yvonneliu/.opam/cs160/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" : "/cs/student/yvonneliu/cs162/hw4/cs162_hw4"
+#        ; "INSIDE_DUNE" :
+#            "/cs/student/yvonneliu/cs162/hw4/cs162_hw4/_build/default"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/cs/student/yvonneliu/cs162/hw4/cs162_hw4/_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "/cs/student/yvonneliu/cs162/hw4/cs162_hw4/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/cs/student/yvonneliu/cs162/hw4/cs162_hw4/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_path = [ External "/cs/student/yvonneliu/.opam/cs160/lib" ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.13.0"
+#      ; standard_library_default =
+#          "/cs/student/yvonneliu/.opam/cs160/lib/ocaml"
+#      ; standard_library = "/cs/student/yvonneliu/.opam/cs160/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "gcc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread"; "-fPIC" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread"; "-fPIC" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; bytecomp_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-fPIC"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-ldl"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-fPIC"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; native_c_libraries = [ "-lm"; "-ldl" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "linux"
+#      ; asm = [ "as" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-pc-linux-gnu"
+#      ; target = "x86_64-pc-linux-gnu"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X030"
+#      ; cmi_magic_number = "Caml1999I030"
+#      ; cmo_magic_number = "Caml1999O030"
+#      ; cma_magic_number = "Caml1999A030"
+#      ; cmx_magic_number = "Caml1999Y030"
+#      ; cmxa_magic_number = "Caml1999Z030"
+#      ; ast_impl_magic_number = "Caml1999M030"
+#      ; ast_intf_magic_number = "Caml1999N030"
+#      ; cmxs_magic_number = "Caml1999D030"
+#      ; cmt_magic_number = "Caml1999T030"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamldep.opt -modules -impl eval.ml) > _build/default/.lamp.objs/eval.ml.d
+$ (cd _build/default && /usr/bin/bash -c 'echo let date = \"unknown\" > build_metadata.ml')
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .lamp.objs/byte -no-alias-deps -opaque -o .lamp.objs/byte/eval.cmo -c -impl eval.ml)
+> File "eval.ml", line 45, characters 4-5:
+> 45 |   | _ -> im_stuck "free_vars did not match any expr"
+>          ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "eval.ml", line 133, characters 4-5:
+> 133 |   | _ -> im_stuck "subst did not match any expr"
+>           ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "eval.ml", line 191, characters 6-7:
+> 191 |     | _ -> im_stuck "Not an Expression"
+>             ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "eval.ml", line 32, characters 11-12:
+> 32 |   | NumLit c -> VarSet.empty
+>                 ^
+> Warning 27 [unused-var-strict]: unused variable c.
+> File "eval.ml", line 33, characters 14-16:
+> 33 |   | Binop (t1,op,t2) -> VarSet.union (free_vars t1) (free_vars t2)
+>                    ^^
+> Warning 27 [unused-var-strict]: unused variable op.
+> File "eval.ml", line 142, characters 32-34:
+> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+>                                       ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 142, characters 67-69:
+> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+>                                                                          ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 154, characters 37-39:
+> 154 |     | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
+>                                            ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 156, characters 26-28:
+> 156 |         | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
+>                                 ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 157, characters 26-28:
+> 157 |         | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
+>                                 ^^
+> Warning 26 [unused-var]: unused variable t3.
+> File "eval.ml", line 161, characters 31-33:
+> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+>                                      ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 161, characters 66-68:
+> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+>                                                                         ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 162, characters 24-26:
+> 162 |     | ListHead e -> let t1 = assert_value (eval e) in
+>                               ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 164, characters 34-36:
+> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+>                                         ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 164, characters 69-71:
+> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+>                                                                            ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 167, characters 24-26:
+> 167 |     | ListTail e -> let t1 = assert_value (eval e) in
+>                               ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 169, characters 35-37:
+> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+>                                          ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 169, characters 70-72:
+> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+>                                                                             ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 172, characters 25-27:
+> 172 |     | ListIsNil e -> let t1 = assert_value (eval e) in 
+>                                ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 178, characters 10-13:
+> 178 |     | Var str -> im_stuck "lonely Var declaration"
+>                 ^^^
+> Warning 27 [unused-var-strict]: unused variable str.
+> File "eval.ml", line 181, characters 26-28:
+> 181 |     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
+>                                 ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 186, characters 19-21:
+> 186 |     | Fix e -> let t1 = assert_value (eval e) in
+>                          ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 188, characters 82-84:
+> 188 |        | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
+>                                                                                         ^^
+> Warning 26 [unused-var]: unused variable t2.
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -o .lamp.objs/native/eval.cmx -c -impl eval.ml)
+> File "eval.ml", line 45, characters 4-5:
+> 45 |   | _ -> im_stuck "free_vars did not match any expr"
+>          ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "eval.ml", line 133, characters 4-5:
+> 133 |   | _ -> im_stuck "subst did not match any expr"
+>           ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "eval.ml", line 191, characters 6-7:
+> 191 |     | _ -> im_stuck "Not an Expression"
+>             ^
+> Warning 11 [redundant-case]: this match case is unused.
+> File "eval.ml", line 32, characters 11-12:
+> 32 |   | NumLit c -> VarSet.empty
+>                 ^
+> Warning 27 [unused-var-strict]: unused variable c.
+> File "eval.ml", line 33, characters 14-16:
+> 33 |   | Binop (t1,op,t2) -> VarSet.union (free_vars t1) (free_vars t2)
+>                    ^^
+> Warning 27 [unused-var-strict]: unused variable op.
+> File "eval.ml", line 142, characters 32-34:
+> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+>                                       ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 142, characters 67-69:
+> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+>                                                                          ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 154, characters 37-39:
+> 154 |     | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
+>                                            ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 156, characters 26-28:
+> 156 |         | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
+>                                 ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 157, characters 26-28:
+> 157 |         | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
+>                                 ^^
+> Warning 26 [unused-var]: unused variable t3.
+> File "eval.ml", line 161, characters 31-33:
+> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+>                                      ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 161, characters 66-68:
+> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+>                                                                         ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 162, characters 24-26:
+> 162 |     | ListHead e -> let t1 = assert_value (eval e) in
+>                               ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 164, characters 34-36:
+> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+>                                         ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 164, characters 69-71:
+> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+>                                                                            ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 167, characters 24-26:
+> 167 |     | ListTail e -> let t1 = assert_value (eval e) in
+>                               ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 169, characters 35-37:
+> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+>                                          ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 169, characters 70-72:
+> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+>                                                                             ^^
+> Warning 26 [unused-var]: unused variable t2.
+> File "eval.ml", line 172, characters 25-27:
+> 172 |     | ListIsNil e -> let t1 = assert_value (eval e) in 
+>                                ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 178, characters 10-13:
+> 178 |     | Var str -> im_stuck "lonely Var declaration"
+>                 ^^^
+> Warning 27 [unused-var-strict]: unused variable str.
+> File "eval.ml", line 181, characters 26-28:
+> 181 |     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
+>                                 ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 186, characters 19-21:
+> 186 |     | Fix e -> let t1 = assert_value (eval e) in
+>                          ^^
+> Warning 26 [unused-var]: unused variable t1.
+> File "eval.ml", line 188, characters 82-84:
+> 188 |        | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
+>                                                                                         ^^
+> Warning 26 [unused-var]: unused variable t2.
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -a -o lamp.cmxa .lamp.objs/native/ast.cmx .lamp.objs/native/parser.cmx .lamp.objs/native/scanner.cmx .lamp.objs/native/eval.cmx)
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .repl.eobjs/byte -I /cs/student/yvonneliu/.opam/cs160/lib/linenoise -I /cs/student/yvonneliu/.opam/cs160/lib/result -I .lamp.objs/byte -no-alias-deps -opaque -open Dune__exe -o .repl.eobjs/byte/dune__exe__Build_metadata.cmo -c -impl build_metadata.ml)
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .repl.eobjs/byte -I .repl.eobjs/native -I /cs/student/yvonneliu/.opam/cs160/lib/linenoise -I /cs/student/yvonneliu/.opam/cs160/lib/result -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o .repl.eobjs/native/dune__exe__Build_metadata.cmx -c -impl build_metadata.ml)
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .repl.eobjs/byte -I /cs/student/yvonneliu/.opam/cs160/lib/linenoise -I /cs/student/yvonneliu/.opam/cs160/lib/result -I .lamp.objs/byte -no-alias-deps -opaque -open Dune__exe -o .repl.eobjs/byte/dune__exe__Repl.cmo -c -impl repl.ml)
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .repl.eobjs/byte -I .repl.eobjs/native -I /cs/student/yvonneliu/.opam/cs160/lib/linenoise -I /cs/student/yvonneliu/.opam/cs160/lib/result -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o .repl.eobjs/native/dune__exe__Repl.cmx -c -impl repl.ml)
+$ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -o repl.exe lamp.cmxa /cs/student/yvonneliu/.opam/cs160/lib/result/result.cmxa /cs/student/yvonneliu/.opam/cs160/lib/linenoise/linenoise.cmxa -I /cs/student/yvonneliu/.opam/cs160/lib/linenoise .repl.eobjs/native/dune__exe.cmx .repl.eobjs/native/dune__exe__Build_metadata.cmx .repl.eobjs/native/dune__exe__Repl.cmx)
