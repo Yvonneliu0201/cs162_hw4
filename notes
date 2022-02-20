@@ -1,0 +1,6 @@
+read the expr
+look for variables that match param var
+append a 0 to the end
+check in varset to see if exist
+	if exist, append another 0 and repeat
+	else not exist, subst [old -> new] expr
