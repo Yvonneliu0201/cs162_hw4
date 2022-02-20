@@ -49,7 +49,7 @@ let rec free_vars (e : expr) : VarSet.t =
 (*begin (print_endline "origName:"); (print_endline x); (print_endline "FV Set:"); (print_set fv); (print_endline "newName:"); (print_endline newName);*)
 let rec renaming (x: string) (fv: VarSet.t)  : string =
   let newName = x ^ "0" in 
-  if (VarSet.mem newName fv) then renaming newName fv else newName end
+  if (VarSet.mem newName fv) then renaming newName fv else newName
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
