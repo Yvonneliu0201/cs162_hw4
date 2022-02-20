@@ -117,7 +117,7 @@ let rec eval (e : expr) : expr =
     | Lambda (str, e) -> Lambda (str, e)
     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
       (match (eval e1) with
-       | Lambda (x, e1') -> let t2 = assert_value (eval e2) in let subAssert = assert_value(eval (subst x (eval e2) e1')) in eval (subst x (eval e2) e1')
+       | Lambda (x, e1') -> let t2 = assert_value (eval e2) in let subAssert = assert_value(eval (subst x (eval e2) (eval e1'))) in eval (subst x (eval e2) (eval e1'))
        | _ -> im_stuck "first argument is not a lambda abstraction"
       )
     | Fix e -> let t1 = assert_value (eval e) in
