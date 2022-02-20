@@ -28,16 +28,25 @@ let assert_value e =
 
 (** Computes the set of free variables in the given expression *)
 let rec free_vars (e : expr) : VarSet.t =
-  failwith "TODO: homework" ;;
+  failwith "free_vars" ;;
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
   match e2 with
-  | Var u -> if u != x then e1 else e2
   | NumLit c -> NumLit c
+  | Binop (t1,op,t2) -> Binop ((subst x e1 t1), op, (subst x e1 t2))
+  | IfThenElse (t1,t2,t3) -> IfThenElse ((subst x e1 t1), (subst x e1 t2), (subst x e1 t3))
+  | ListNil -> e2
+  | ListCons (t1,t2) -> ListCons ((subst x e1 t1), (subst x e1 t2))
+  | ListHead t1 -> ListHead (subst x e1 t1)
+  | ListTail t1 -> ListTail (subst x e1 t1)
+  | ListIsNil t1 -> ListIsNil (subst x e1 t1)
+  | Var u -> if u != x then e1 else e2
   | App (t1, t2) -> App ((subst x e1 t1), (subst x e1 t2))
   | Lambda (u, t') -> if u != x then (if (VarSet.mem u (free_vars e1)) then im_stuck "alpha renaming" else Lambda (u, (subst x e1 t'))) else e2
-  | _ -> im_stuck "subst did not match to Var|App|Lambda"
+  | LetBind (u,t1,t2) -> if u != x then (if (VarSet.mem u (free_vars e1)) then im_stuck "alpha renaming" else LetBind (u, (subst x e1 t1), (subst x e1 t2))) else e2
+  | Fix t1 -> Fix (subst x e1 t1)
+  | _ -> im_stuck "subst did not match any expr"
 
 (** Evaluates e. You need to copy over your
    implementation of homework 3. *)

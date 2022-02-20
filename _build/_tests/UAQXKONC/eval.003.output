@@ -1,0 +1,11 @@
+[failure] lexing: empty token
+          Raised by primitive operation at Stdlib__Lexing.engine in file "lexing.ml", line 65, characters 15-37
+          Called from Scanner.__ocaml_lex_token_rec in file "scanner.ml", line 715, characters 8-65
+          Called from Stdlib__Parsing.yyparse.loop in file "parsing.ml", line 134, characters 24-38
+          Called from Stdlib__Parsing.yyparse in file "parsing.ml", line 165, characters 4-28
+          Re-raised at Stdlib__Parsing.yyparse in file "parsing.ml", line 184, characters 8-17
+          Called from Dune__exe__Test.check_eval_s in file "test.ml" (inlined), line 22, characters 13-22
+          Called from Dune__exe__Test.test_e in file "test.ml", line 35, characters 38-58
+          Called from Alcotest_engine__Core.Make.protect_test.(fun) in file "src/alcotest-engine/core.ml", line 180, characters 17-23
+          Called from Alcotest_engine__Monad.Identity.catch in file "src/alcotest-engine/monad.ml", line 24, characters 31-35
+          
