@@ -112,12 +112,12 @@ let rec eval (e : expr) : expr =
        | ListCons (_, _) -> NumLit 0
        | _ -> im_stuck "argument is not of List type"
       ) 
-    | Var str -> im_stuck "just a var declaration"
-    | LetBind (str,e1,e2) -> let t1 = assert_value (eval e1) in let subAssert = assert_value ( eval (subst str (eval e1) e2) ) in eval (subst str (eval e1) e2)
+    | Var str -> Var str
+    | LetBind (x,e1,e2) -> let v1 = (eval e1) in assert_value v1; let v2 = eval (subst x v1 e2) in assert_value v2; v2
     | Lambda (str, e) -> Lambda (str, e)
     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
       (match (eval e1) with
-       | Lambda (x, e1') -> (if (is_value (eval e1')) then let subAssert = assert_value(eval (subst x (eval e2) (eval e1'))) in eval (subst x (eval e2) (eval e1')) else let subAssert = assert_value(eval (subst x (eval e2) e1')) in eval (subst x (eval e2) e1'))
+       | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = (eval (subst x v e1')) in assert_value v'; v'
        | _ -> im_stuck "first argument is not a lambda abstraction"
       )
     | Fix e -> let t1 = assert_value (eval e) in
