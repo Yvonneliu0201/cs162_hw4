@@ -112,7 +112,7 @@ let rec eval (e : expr) : expr =
        | ListCons (_, _) -> NumLit 0
        | _ -> im_stuck "argument is not of List type"
       ) 
-    | Var str -> Var str
+    | Var str -> im_stuck "lonely Var declaration"
     | LetBind (x,e1,e2) -> let v1 = (eval e1) in assert_value v1; let v2 = eval (subst x v1 e2) in assert_value v2; v2
     | Lambda (str, e) -> Lambda (str, e)
     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
