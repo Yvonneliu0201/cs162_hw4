@@ -43,7 +43,7 @@ run "lambda-plus" [
     test_e "(lambda x. x + x) 5" (NumLit(10)) ;
     test_e "lambda x. let y = 2 in y" (Lambda("x",LetBind("y",NumLit(2),Var("y")))) ;
     test_e "(lambda x. (let y = 2 in y+y)) 3" (NumLit(4)) ;
-    test_e "(lambda f, y. let y0 = 5 in y) (lambda x. y)" (Lambda("x",Var("x"))) ;
+    test_e "(lambda z. lambda y. let x = 5 in z) (lambda y. x)" (Lambda("x",Var("x"))) ;
   ];
   "stuck", [
     test_stuck "1 > Nil" ;
