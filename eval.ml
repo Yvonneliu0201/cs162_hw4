@@ -64,8 +64,8 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
   | ListIsNil t1 -> ListIsNil (subst x e1 t1)
   | Var u -> if u = x then e1 else e2
   | App (t1, t2) -> App ((subst x e1 t1), (subst x e1 t2))
-  | Lambda (u, t') -> if u != x then (if (VarSet.mem u (free_vars e1)) then let rename = renaming u (VarSet.union (free_vars e1) (free_vars e2)) in Lambda(rename,(subst x e1 (subst u (Var rename) t'))) else Lambda (u, (subst x e1 t'))) else e2
-  | LetBind (u,t1,t2) -> if u != x then (if (VarSet.mem u (free_vars e1)) then let rename = renaming u (VarSet.union (free_vars e1) (free_vars e2)) in LetBind (rename, (subst x e1 (subst u (Var rename) t1)), (subst x e1 (subst u (Var rename) t2))) else LetBind (u, (subst x e1 t1), (subst x e1 t2))) else e2
+  | Lambda (u, t') -> if u != x then (if (VarSet.mem u (free_vars e1)) then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) in Lambda(rename,(subst x e1 (subst u (Var rename) t'))) else Lambda (u, (subst x e1 t'))) else e2
+  | LetBind (u,t1,t2) -> if u != x then (if (VarSet.mem u (free_vars e1)) then let rename = renaming u (VarSet.union (VarSet.union (free_vars e1) (free_vars t1)) (free_vars t2)) in LetBind (rename, (subst x e1 (subst u (Var rename) t1)), (subst x e1 (subst u (Var rename) t2))) else LetBind (u, (subst x e1 t1), (subst x e1 t2))) else e2
   | Fix t1 -> Fix (subst x e1 t1)
   | _ -> im_stuck "subst did not match any expr"
 
