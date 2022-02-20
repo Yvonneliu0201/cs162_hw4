@@ -40,7 +40,7 @@ let rec free_vars (e : expr) : VarSet.t =
   | Var u -> VarSet.singleton u
   | App (t1, t2) -> VarSet.union (free_vars t1) (free_vars t2)
   | Lambda (u, t') -> VarSet.diff (free_vars t') (VarSet.singleton u)
-  | LetBind (u,t1,t2) -> VarSet.union (free_vars t1) (free_vars t2)
+  | LetBind (u,t1,t2) -> VarSet.diff (VarSet.union (free_vars t1) (free_vars t2)) (VarSet.singleton u)
   | Fix t1 -> (free_vars t1)
   | _ -> im_stuck "free_vars did not match any expr"
 
