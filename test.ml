@@ -39,13 +39,16 @@ let test_stuck s = test_case s `Quick (check_stuck s) in
 run "lambda-plus" [
   "eval", [
     test_e "5" (NumLit(5)) ;
+    test_e "(lambda x. x) 2" (NumLit(2)) ;
     test_e "(lambda x. x + x) 5" (NumLit(10)) ;
-    test_e "(lambda x. x) 3" (NumLit(3)) ;
     test_e "lambda x. let y = 2 in y" (Lambda("x",LetBind("y",NumLit(2),Var("y")))) ;
-    test_e "(lambda x. let y = 2 in x+y) 3" (NumLit(5)) ;
-    test_e "(lambda x. (lambda y. y + x) 2 ) 3" (NumLit (5)) ;
+    test_e "(lambda x. (let y = 2 in y+y)) 3" (NumLit(4)) ;
   ];
   "stuck", [
     test_stuck "1 > Nil" ;
   ]
 ]
+
+(*
+
+*)

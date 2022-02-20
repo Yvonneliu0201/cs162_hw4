@@ -28,7 +28,21 @@ let assert_value e =
 
 (** Computes the set of free variables in the given expression *)
 let rec free_vars (e : expr) : VarSet.t =
-  failwith "free_vars" ;;
+  match e with
+  | NumLit c -> VarSet.empty
+  | Binop (t1,op,t2) -> VarSet.union (free_vars t1) (free_vars t2)
+  | IfThenElse (t1,t2,t3) -> VarSet.union (VarSet.union (free_vars t1) (free_vars t2)) (free_vars t3)
+  | ListNil -> VarSet.empty
+  | ListCons (t1,t2) -> VarSet.union (free_vars t1) (free_vars t2)
+  | ListHead t1 -> (free_vars t1)
+  | ListTail t1 -> (free_vars t1)
+  | ListIsNil t1 -> (free_vars t1)
+  | Var u -> VarSet.singleton u
+  | App (t1, t2) -> VarSet.union (free_vars t1) (free_vars t2)
+  | Lambda (u, t') -> VarSet.diff (free_vars t') (VarSet.singleton u)
+  | LetBind (u,t1,t2) -> VarSet.union (free_vars t1) (free_vars t2)
+  | Fix t1 -> (free_vars t1)
+  | _ -> im_stuck "free_vars did not match any expr"
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
@@ -41,7 +55,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
   | ListHead t1 -> ListHead (subst x e1 t1)
   | ListTail t1 -> ListTail (subst x e1 t1)
   | ListIsNil t1 -> ListIsNil (subst x e1 t1)
-  | Var u -> if u != x then e1 else e2
+  | Var u -> if u = x then e1 else e2
   | App (t1, t2) -> App ((subst x e1 t1), (subst x e1 t2))
   | Lambda (u, t') -> if u != x then (if (VarSet.mem u (free_vars e1)) then im_stuck "alpha renaming" else Lambda (u, (subst x e1 t'))) else e2
   | LetBind (u,t1,t2) -> if u != x then (if (VarSet.mem u (free_vars e1)) then im_stuck "alpha renaming" else LetBind (u, (subst x e1 t1), (subst x e1 t2))) else e2
