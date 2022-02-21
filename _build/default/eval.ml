@@ -69,7 +69,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     if u != x 
     then 
       (
-       if (VarSet.mem u (free_vars e1)) 
+       if (VarSet.mem u (free_vars t')) 
        then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) 0 in 
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
@@ -133,9 +133,10 @@ let rec eval (e : expr) : expr =
        | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = (eval (subst x v e1')) in assert_value v'; v'
        | _ -> im_stuck "first argument is not a lambda abstraction"
       )
-    | Fix e -> let t1 = assert_value (eval e) in
-      (match (eval e) with
-       | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
+    | Fix e1 -> let t1 = assert_value (eval e1) in
+      (match (eval e1) with
+       | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in 
+            let t2 = assert_value v in v
        | _ -> im_stuck "e is not a lambda abstraction"
       )
     | _ -> im_stuck "Not an Expression"
