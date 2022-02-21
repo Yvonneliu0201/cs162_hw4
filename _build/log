@@ -1,10 +1,10 @@
 # dune build repl.exe
 # OCAMLPARAM: unset
 # Workspace root: /cs/student/yvonneliu/cs162/hw4/cs162_hw4
-$ /usr/bin/nproc > /tmp/dune455e28.output 2> /dev/null
+$ /usr/bin/nproc > /tmp/dune242ea6.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -config > /tmp/dune83e522.output
+$ /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -config > /tmp/dunee9c998.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -123,12 +123,12 @@ $ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -w @1..
 > 45 |   | _ -> im_stuck "free_vars did not match any expr"
 >          ^
 > Warning 11 [redundant-case]: this match case is unused.
-> File "eval.ml", line 133, characters 4-5:
-> 133 |   | _ -> im_stuck "subst did not match any expr"
+> File "eval.ml", line 123, characters 4-5:
+> 123 |   | _ -> im_stuck "subst did not match any expr"
 >           ^
 > Warning 11 [redundant-case]: this match case is unused.
-> File "eval.ml", line 191, characters 6-7:
-> 191 |     | _ -> im_stuck "Not an Expression"
+> File "eval.ml", line 181, characters 6-7:
+> 181 |     | _ -> im_stuck "Not an Expression"
 >             ^
 > Warning 11 [redundant-case]: this match case is unused.
 > File "eval.ml", line 32, characters 11-12:
@@ -139,76 +139,76 @@ $ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -w @1..
 > 33 |   | Binop (t1,op,t2) -> VarSet.union (free_vars t1) (free_vars t2)
 >                    ^^
 > Warning 27 [unused-var-strict]: unused variable op.
-> File "eval.ml", line 142, characters 32-34:
-> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+> File "eval.ml", line 132, characters 32-34:
+> 132 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
 >                                       ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 142, characters 67-69:
-> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+> File "eval.ml", line 132, characters 67-69:
+> 132 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
 >                                                                          ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 154, characters 37-39:
-> 154 |     | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
+> File "eval.ml", line 144, characters 37-39:
+> 144 |     | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
 >                                            ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 156, characters 26-28:
-> 156 |         | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
+> File "eval.ml", line 146, characters 26-28:
+> 146 |         | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
 >                                 ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 157, characters 26-28:
-> 157 |         | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
+> File "eval.ml", line 147, characters 26-28:
+> 147 |         | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
 >                                 ^^
 > Warning 26 [unused-var]: unused variable t3.
-> File "eval.ml", line 161, characters 31-33:
-> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+> File "eval.ml", line 151, characters 31-33:
+> 151 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
 >                                      ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 161, characters 66-68:
-> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+> File "eval.ml", line 151, characters 66-68:
+> 151 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
 >                                                                         ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 162, characters 24-26:
-> 162 |     | ListHead e -> let t1 = assert_value (eval e) in
+> File "eval.ml", line 152, characters 24-26:
+> 152 |     | ListHead e -> let t1 = assert_value (eval e) in
 >                               ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 164, characters 34-36:
-> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+> File "eval.ml", line 154, characters 34-36:
+> 154 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
 >                                         ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 164, characters 69-71:
-> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+> File "eval.ml", line 154, characters 69-71:
+> 154 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
 >                                                                            ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 167, characters 24-26:
-> 167 |     | ListTail e -> let t1 = assert_value (eval e) in
+> File "eval.ml", line 157, characters 24-26:
+> 157 |     | ListTail e -> let t1 = assert_value (eval e) in
 >                               ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 169, characters 35-37:
-> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+> File "eval.ml", line 159, characters 35-37:
+> 159 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
 >                                          ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 169, characters 70-72:
-> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+> File "eval.ml", line 159, characters 70-72:
+> 159 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
 >                                                                             ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 172, characters 25-27:
-> 172 |     | ListIsNil e -> let t1 = assert_value (eval e) in 
+> File "eval.ml", line 162, characters 25-27:
+> 162 |     | ListIsNil e -> let t1 = assert_value (eval e) in 
 >                                ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 178, characters 10-13:
-> 178 |     | Var str -> im_stuck "lonely Var declaration"
+> File "eval.ml", line 168, characters 10-13:
+> 168 |     | Var str -> im_stuck "lonely Var declaration"
 >                 ^^^
 > Warning 27 [unused-var-strict]: unused variable str.
-> File "eval.ml", line 181, characters 26-28:
-> 181 |     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
+> File "eval.ml", line 171, characters 26-28:
+> 171 |     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
 >                                 ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 186, characters 19-21:
-> 186 |     | Fix e -> let t1 = assert_value (eval e) in
+> File "eval.ml", line 176, characters 19-21:
+> 176 |     | Fix e -> let t1 = assert_value (eval e) in
 >                          ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 188, characters 82-84:
-> 188 |        | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
+> File "eval.ml", line 178, characters 82-84:
+> 178 |        | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
 >                                                                                         ^^
 > Warning 26 [unused-var]: unused variable t2.
 $ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -o .lamp.objs/native/eval.cmx -c -impl eval.ml)
@@ -216,12 +216,12 @@ $ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1
 > 45 |   | _ -> im_stuck "free_vars did not match any expr"
 >          ^
 > Warning 11 [redundant-case]: this match case is unused.
-> File "eval.ml", line 133, characters 4-5:
-> 133 |   | _ -> im_stuck "subst did not match any expr"
+> File "eval.ml", line 123, characters 4-5:
+> 123 |   | _ -> im_stuck "subst did not match any expr"
 >           ^
 > Warning 11 [redundant-case]: this match case is unused.
-> File "eval.ml", line 191, characters 6-7:
-> 191 |     | _ -> im_stuck "Not an Expression"
+> File "eval.ml", line 181, characters 6-7:
+> 181 |     | _ -> im_stuck "Not an Expression"
 >             ^
 > Warning 11 [redundant-case]: this match case is unused.
 > File "eval.ml", line 32, characters 11-12:
@@ -232,76 +232,76 @@ $ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1
 > 33 |   | Binop (t1,op,t2) -> VarSet.union (free_vars t1) (free_vars t2)
 >                    ^^
 > Warning 27 [unused-var-strict]: unused variable op.
-> File "eval.ml", line 142, characters 32-34:
-> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+> File "eval.ml", line 132, characters 32-34:
+> 132 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
 >                                       ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 142, characters 67-69:
-> 142 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
+> File "eval.ml", line 132, characters 67-69:
+> 132 |     | Binop (e1, op, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in 
 >                                                                          ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 154, characters 37-39:
-> 154 |     | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
+> File "eval.ml", line 144, characters 37-39:
+> 144 |     | IfThenElse (e1, e2, e3) -> let t1 = assert_value (eval e1) in
 >                                            ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 156, characters 26-28:
-> 156 |         | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
+> File "eval.ml", line 146, characters 26-28:
+> 146 |         | NumLit 0 -> let t2 = assert_value (eval e3) in (eval e3)
 >                                 ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 157, characters 26-28:
-> 157 |         | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
+> File "eval.ml", line 147, characters 26-28:
+> 147 |         | NumLit _ -> let t3 = assert_value (eval e2) in (eval e2)
 >                                 ^^
 > Warning 26 [unused-var]: unused variable t3.
-> File "eval.ml", line 161, characters 31-33:
-> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+> File "eval.ml", line 151, characters 31-33:
+> 151 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
 >                                      ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 161, characters 66-68:
-> 161 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
+> File "eval.ml", line 151, characters 66-68:
+> 151 |     | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in ListCons ((eval e1), (eval e2))
 >                                                                         ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 162, characters 24-26:
-> 162 |     | ListHead e -> let t1 = assert_value (eval e) in
+> File "eval.ml", line 152, characters 24-26:
+> 152 |     | ListHead e -> let t1 = assert_value (eval e) in
 >                               ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 164, characters 34-36:
-> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+> File "eval.ml", line 154, characters 34-36:
+> 154 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
 >                                         ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 164, characters 69-71:
-> 164 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
+> File "eval.ml", line 154, characters 69-71:
+> 154 |        | ListCons (e1, e2) -> let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e1)
 >                                                                            ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 167, characters 24-26:
-> 167 |     | ListTail e -> let t1 = assert_value (eval e) in
+> File "eval.ml", line 157, characters 24-26:
+> 157 |     | ListTail e -> let t1 = assert_value (eval e) in
 >                               ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 169, characters 35-37:
-> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+> File "eval.ml", line 159, characters 35-37:
+> 159 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
 >                                          ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 169, characters 70-72:
-> 169 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
+> File "eval.ml", line 159, characters 70-72:
+> 159 |        | ListCons (e1, e2) ->  let t1 = assert_value (eval e1) in let t2 = assert_value (eval e2) in (eval e2)
 >                                                                             ^^
 > Warning 26 [unused-var]: unused variable t2.
-> File "eval.ml", line 172, characters 25-27:
-> 172 |     | ListIsNil e -> let t1 = assert_value (eval e) in 
+> File "eval.ml", line 162, characters 25-27:
+> 162 |     | ListIsNil e -> let t1 = assert_value (eval e) in 
 >                                ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 178, characters 10-13:
-> 178 |     | Var str -> im_stuck "lonely Var declaration"
+> File "eval.ml", line 168, characters 10-13:
+> 168 |     | Var str -> im_stuck "lonely Var declaration"
 >                 ^^^
 > Warning 27 [unused-var-strict]: unused variable str.
-> File "eval.ml", line 181, characters 26-28:
-> 181 |     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
+> File "eval.ml", line 171, characters 26-28:
+> 171 |     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
 >                                 ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 186, characters 19-21:
-> 186 |     | Fix e -> let t1 = assert_value (eval e) in
+> File "eval.ml", line 176, characters 19-21:
+> 176 |     | Fix e -> let t1 = assert_value (eval e) in
 >                          ^^
 > Warning 26 [unused-var]: unused variable t1.
-> File "eval.ml", line 188, characters 82-84:
-> 188 |        | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
+> File "eval.ml", line 178, characters 82-84:
+> 178 |        | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
 >                                                                                         ^^
 > Warning 26 [unused-var]: unused variable t2.
 $ (cd _build/default && /cs/student/yvonneliu/.opam/cs160/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -a -o lamp.cmxa .lamp.objs/native/ast.cmx .lamp.objs/native/parser.cmx .lamp.objs/native/scanner.cmx .lamp.objs/native/eval.cmx)
