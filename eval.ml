@@ -126,7 +126,7 @@ let rec eval (e : expr) : expr =
        | _ -> im_stuck "argument is not of List type"
       ) 
     | Var str -> im_stuck "lonely var decl"
-    | LetBind (x,e1,e2) -> e2
+    | LetBind (x,e1,e2) -> e
     | Lambda (str, e) -> Lambda (str, e)
     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
       (match (eval e1) with
