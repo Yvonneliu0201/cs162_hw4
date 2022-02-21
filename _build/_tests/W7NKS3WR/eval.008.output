@@ -1,6 +1,0 @@
-[exception] Stack overflow
-            Raised by primitive operation at Stdlib__Parsing.yyparse.loop in file "parsing.ml", line 132, characters 10-41
-            Called from Dune__exe__Test.check_eval in file "test.ml", line 15, characters 8-14
-            Called from Alcotest_engine__Core.Make.protect_test.(fun) in file "src/alcotest-engine/core.ml", line 180, characters 17-23
-            Called from Alcotest_engine__Monad.Identity.catch in file "src/alcotest-engine/monad.ml", line 24, characters 31-35
-            
