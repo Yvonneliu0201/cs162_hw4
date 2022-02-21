@@ -66,7 +66,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
   | Var u -> if u = x then e1 else e2
   | App (t1, t2) -> App ((subst x e1 t1), (subst x e1 t2))
   | Lambda (u, t') -> 
-    if u != x 
+    if not( u = x) 
     then 
       (
        if (VarSet.mem u (free_vars e1)) 
@@ -74,7 +74,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
       ) 
-    else t'
+    else e2
   | LetBind (u,t1,t2) -> let substApp = subst x e1 (App (Lambda(u,t2),t1)) in 
     (match substApp with
      | App (Lambda(u',t2'), t1') -> LetBind(u',t1',t2'))
