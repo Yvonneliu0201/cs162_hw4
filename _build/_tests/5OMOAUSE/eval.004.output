@@ -1,0 +1,11 @@
+[failure] Got stuck!
+just a var declaration
+in expression y
+in expression y + y
+in expression let y = 2 in y + y
+in expression (lambda x. let y = 2 in y + y) 3
+          Raised at Stdlib.failwith in file "stdlib.ml", line 29, characters 17-33
+          Called from Dune__exe__Test.check_eval in file "test.ml", line 16, characters 19-50
+          Called from Alcotest_engine__Core.Make.protect_test.(fun) in file "src/alcotest-engine/core.ml", line 180, characters 17-23
+          Called from Alcotest_engine__Monad.Identity.catch in file "src/alcotest-engine/monad.ml", line 24, characters 31-35
+          

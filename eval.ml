@@ -1,3 +1,4 @@
+(*FIX WORKS IN THIS ONE*)
 open Ast
 
 (** Variable set. Based on OCaml standard library Set. *)
@@ -55,18 +56,7 @@ let rec renaming (x: string) (fv: VarSet.t)  : string =
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
   match e2 with
   | NumLit c -> NumLit c
-  | Binop (t1,op,t2) -> let subT1 =
-    (match t1 with 
-     | App _ -> t1
-     | LetBind _ -> t1
-     | _ -> subst x e1 t1
-    ) in
-    let subT2 = 
-    (match t2 with 
-     | App _ -> t2
-     | LetBind _ -> t2
-     | _ -> subst x e1 t2
-    ) in Binop (subT1, op, subT2)
+  | Binop (t1,op,t2) -> Binop ((subst x e1 t1), op, (subst x e1 t2))
   | IfThenElse (t1,t2,t3) -> IfThenElse ((subst x e1 t1), (subst x e1 t2), (subst x e1 t3))
   | ListNil -> e2
   | ListCons (t1,t2) -> ListCons ((subst x e1 t1), (subst x e1 t2))
@@ -123,17 +113,12 @@ let rec eval (e : expr) : expr =
        | ListCons (_, _) -> NumLit 0
        | _ -> im_stuck "argument is not of List type"
       ) 
-    | Var str -> im_stuck "lonely Var declaration"
+    | Var str -> im_stuck "lonely var decl"
     | LetBind (x,e1,e2) -> let v1 = (eval e1) in assert_value v1; let v2 = eval (subst x v1 e2) in assert_value v2; v2
     | Lambda (str, e) -> Lambda (str, e)
     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
       (match (eval e1) with
-       | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = 
-         (match e1' with
-          | App _ -> (eval (subst x v (eval e1')))
-          | LetBind _ ->(eval (subst x v (eval e1')))
-          | _ -> (eval (subst x v e1'))
-         ) in assert_value v'; v'
+       | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = (eval (subst x v e1')) in assert_value v'; v'
        | _ -> im_stuck "first argument is not a lambda abstraction"
       )
     | Fix e -> let t1 = assert_value (eval e) in
