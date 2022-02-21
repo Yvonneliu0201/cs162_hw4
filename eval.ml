@@ -69,12 +69,12 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     if u != x 
     then 
       (
-       if (VarSet.mem u (free_vars e1)) 
+       if (VarSet.mem u (free_vars t')) 
        then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) 0 in 
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
       ) 
-    else Lambda (u, t')
+    else t'
   | LetBind (u,t1,t2) -> let substApp = subst x e1 (App (Lambda(u,t2),t1)) in 
     (match substApp with
      | App (Lambda(u',t2'), t1') -> LetBind(u',t1',t2'))
