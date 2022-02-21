@@ -1,10 +1,10 @@
-# dune exec -- ./test.exe --show-errors
+# dune build repl.exe
 # OCAMLPARAM: unset
 # Workspace root: /cs/student/yvonneliu/cs162/hw4/cs162_hw4
-$ /usr/bin/nproc > /tmp/dune09b46c.output 2> /dev/null
+$ /usr/bin/nproc > /tmp/duneb53bd8.output 2> /dev/null
 # Auto-detected concurrency: 8
 # disable binary cache
-$ /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -config > /tmp/dune398577.output
+$ /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -config > /tmp/duneb0c469.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -116,4 +116,4 @@ $ /cs/student/yvonneliu/.opam/cs160/bin/ocamlc.opt -config > /tmp/dune398577.out
 #      ; windows_unicode = false
 #      }
 #  }
-# Workspace root: /cs/student/yvonneliu/cs162/hw4/cs162_hw4
+$ (cd _build/default && /usr/bin/bash -c 'echo let date = \"unknown\" > build_metadata.ml')

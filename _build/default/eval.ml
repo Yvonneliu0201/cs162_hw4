@@ -70,7 +70,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     then 
       (
        if (VarSet.mem u (free_vars e1)) 
-       then let rename = renaming u (VarSet.union (free_vars e1) (free_vars e2)) in 
+       then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) in 
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
       ) 
