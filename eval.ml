@@ -135,7 +135,8 @@ let rec eval (e : expr) : expr =
       )
     | Fix e1 -> let t1 = assert_value (eval e1) in
       (match (eval e1) with
-       | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
+       | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in 
+            let t2 = assert_value v in v
        | _ -> im_stuck "e is not a lambda abstraction"
       )
     | _ -> im_stuck "Not an Expression"
