@@ -128,12 +128,12 @@ let rec eval (e : expr) : expr =
     | Var str -> im_stuck "lonely var decl"
     | LetBind (x,e1,e2) -> let v1 = (eval e1) in assert_value v1; let v2 = eval (subst x v1 e2) in assert_value v2; v2
     | Lambda (str, e) -> Lambda (str, e)
-    | App (e1, e2) -> e
-    | Fix e -> let t1 = assert_value (eval e) in
-      (match (eval e) with
-       | Lambda (f, e') -> let v = eval (subst f (Fix (Lambda (f,e'))) e') in let t2 = assert_value v in v
-       | _ -> im_stuck "e is not a lambda abstraction"
+    | App (e1, e2) -> let t1 = assert_value (eval e1) in 
+      (match (eval e1) with
+       | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = (eval (subst x v e1')) in assert_value v'; v'
+       | _ -> im_stuck "first argument is not a lambda abstraction"
       )
+    | Fix e1 -> e
     | _ -> im_stuck "Not an Expression"
   with
   | Stuck msg -> im_stuck (msg ^ "\nin expression " ^ string_of_expr e)
