@@ -1,0 +1,10 @@
+[failure] Got stuck!
+lonely var decl
+in expression f
+in expression f 6
+in expression let f = fix (lambda f. lambda m. if m > 1 then m * (f (m - 1)) else 1) in f 6
+          Raised at Stdlib.failwith in file "stdlib.ml", line 29, characters 17-33
+          Called from Dune__exe__Test.check_eval in file "test.ml", line 16, characters 19-50
+          Called from Alcotest_engine__Core.Make.protect_test.(fun) in file "src/alcotest-engine/core.ml", line 180, characters 17-23
+          Called from Alcotest_engine__Monad.Identity.catch in file "src/alcotest-engine/monad.ml", line 24, characters 31-35
+          

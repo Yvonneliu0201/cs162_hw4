@@ -43,11 +43,13 @@ run "lambda-plus" [
     test_e "(lambda x. x + x) 5" (NumLit(10)) ;
     test_e "lambda x. let y = 2 in y" (Lambda("x",LetBind("y",NumLit(2),Var("y")))) ;
     test_e "(lambda x. (let y = 2 in y+y)) 3" (NumLit(4)) ;
+    test_e "(lambda x. (let x = 1 in let y = 2 in x + y) + x) 5" (NumLit(8)) ;
     test_e "(lambda x, y. x y) (lambda x. y)" (Lambda("y0",App(Lambda("x",Var("y")),Var("y0")))) ;
     test_e "(lambda x. (lambda x. x) 2) 1" (NumLit(2)) ;
     test_e "(lambda x. (let x = 1 in x)) 2" (NumLit(1)) ;
     test_e "(lambda x. (let x = 1 in x) + x) 2" (NumLit(3)) ;
     test_e "let f = lambda x. x * 2 in f 3" (NumLit(6)) ;
+    test_e "(lambda x. lambda x. x) 5" (Lambda ("x", Var("x"))) ;
     test_e "fun f with m = if m > 1 then m * (f (m - 1)) else 1 in f 6" (NumLit(720)) ;
   ];
   "stuck", [
