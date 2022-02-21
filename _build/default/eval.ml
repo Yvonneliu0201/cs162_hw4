@@ -43,14 +43,14 @@ let rec free_vars (e : expr) : VarSet.t =
   | Lambda (u, t') -> VarSet.diff (free_vars t') (VarSet.singleton u)
   | LetBind (u,t1,t2) -> VarSet.union (free_vars t1) (free_vars (Lambda(u,t2)))
   | Fix t1 -> (free_vars t1)
-  | _ -> VarSet.empty
+  | _ -> im_stuck "free_vars did not match any expr"
 
  let print_set s = 
      VarSet.iter print_endline s
 (*begin (print_endline "origName:"); (print_endline x); (print_endline "FV Set:"); (print_set fv); (print_endline "newName:"); (print_endline newName);*)
-let rec renaming (x: string) (fv: VarSet.t)  : string =
-  let newName = x ^ "0" in 
-  if (VarSet.mem newName fv) then renaming newName fv else newName
+let rec renaming (x: string) (fv: VarSet.t) (counter: int) : string =
+  let newName = x ^ (string_of_int counter) in 
+  if (VarSet.mem newName fv) then renaming newName fv (counter + 1) else newName
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
@@ -70,7 +70,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     then 
       (
        if (VarSet.mem u (free_vars e1)) 
-       then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) in 
+       then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) 0 in 
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
       ) 
@@ -79,6 +79,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     (match substApp with
      | App (Lambda(u',t2'), t1') -> LetBind(u',t1',t2'))
   | Fix t1 -> Fix (subst x e1 t1)
+  | _ -> im_stuck "subst did not match any expr"
 
 (*| LetBind (u,t1,t2) -> if u != x then (if (VarSet.mem u (free_vars e1)) then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t2)) in LetBind (rename, (subst x e1 (subst u (Var rename) t1)), (subst x e1 (subst u (Var rename) t2))) else LetBind (u, (subst x e1 t1), (subst x e1 t2))) else e2*)
 (** Evaluates e. You need to copy over your

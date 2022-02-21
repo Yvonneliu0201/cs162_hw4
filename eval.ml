@@ -48,9 +48,9 @@ let rec free_vars (e : expr) : VarSet.t =
  let print_set s = 
      VarSet.iter print_endline s
 (*begin (print_endline "origName:"); (print_endline x); (print_endline "FV Set:"); (print_set fv); (print_endline "newName:"); (print_endline newName);*)
-let rec renaming (x: string) (fv: VarSet.t)  : string =
-  let newName = x ^ "0" in 
-  if (VarSet.mem newName fv) then renaming newName fv else newName
+let rec renaming (x: string) (fv: VarSet.t) (counter: int) : string =
+  let newName = x ^ (string_of_int counter) in 
+  if (VarSet.mem newName fv) then renaming newName fv (counter + 1) else newName
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
@@ -70,7 +70,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     then 
       (
        if (VarSet.mem u (free_vars e1)) 
-       then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) in 
+       then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t')) 0 in 
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
       ) 
