@@ -43,7 +43,7 @@ let rec free_vars (e : expr) : VarSet.t =
   | Lambda (u, t') -> VarSet.diff (free_vars t') (VarSet.singleton u)
   | LetBind (u,t1,t2) -> VarSet.union (free_vars t1) (free_vars (Lambda(u,t2)))
   | Fix t1 -> (free_vars t1)
-  | _ -> im_stuck "free_vars did not match any expr"
+  | _ -> VarSet.empty
 
  let print_set s = 
      VarSet.iter print_endline s
@@ -79,7 +79,6 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
     (match substApp with
      | App (Lambda(u',t2'), t1') -> LetBind(u',t1',t2'))
   | Fix t1 -> Fix (subst x e1 t1)
-  | _ -> im_stuck "subst did not match any expr"
 
 (*| LetBind (u,t1,t2) -> if u != x then (if (VarSet.mem u (free_vars e1)) then let rename = renaming u (VarSet.union (free_vars e1) (free_vars t2)) in LetBind (rename, (subst x e1 (subst u (Var rename) t1)), (subst x e1 (subst u (Var rename) t2))) else LetBind (u, (subst x e1 t1), (subst x e1 t2))) else e2*)
 (** Evaluates e. You need to copy over your
