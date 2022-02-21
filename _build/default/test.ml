@@ -43,6 +43,7 @@ run "lambda-plus" [
     test_e "(lambda x. x + x) 5" (NumLit(10)) ;
     test_e "lambda x. let y = 2 in y" (Lambda("x",LetBind("y",NumLit(2),Var("y")))) ;
     test_e "(lambda x. (let y = 2 in y+y)) 3" (NumLit(4)) ;
+    test_e "(lambda x, y. x y) (lambda x. y)" (Lambda("y0",App(Lambda("x",Var("y")),Var("y0")))) ;
     test_e "(lambda x. (lambda x. x) 2) 1" (NumLit(2)) ;
     test_e "(lambda x. (let x = 1 in x)) 2" (NumLit(1)) ;
     test_e "(lambda x. (let x = 1 in x) + x) 2" (NumLit(3)) ;
