@@ -74,7 +74,7 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
           Lambda(rename,(subst x e1 (subst u (Var rename) t'))) 
        else Lambda (u, (subst x e1 t'))
       ) 
-    else t'
+    else Lambda (u, t')
   | LetBind (u,t1,t2) -> let substApp = subst x e1 (App (Lambda(u,t2),t1)) in 
     (match substApp with
      | App (Lambda(u',t2'), t1') -> LetBind(u',t1',t2'))
