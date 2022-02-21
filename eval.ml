@@ -128,7 +128,12 @@ let rec eval (e : expr) : expr =
     | Lambda (str, e) -> Lambda (str, e)
     | App (e1, e2) -> let t1 = assert_value (eval e1) in 
       (match (eval e1) with
-       | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = (eval (subst x v e1')) in assert_value v'; v'
+       | Lambda (x, e1') -> let v = (eval e2) in assert_value v; let v' = 
+         (match e1' with
+          | App _ -> (eval (subst x v (eval e1')))
+          | LetBind _ ->(eval (subst x v (eval e1')))
+          | _ -> (eval (subst x v e1'))
+         ) in assert_value v'; v'
        | _ -> im_stuck "first argument is not a lambda abstraction"
       )
     | Fix e -> let t1 = assert_value (eval e) in
